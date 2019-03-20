@@ -14,7 +14,7 @@
             required
             placeholder="Termo de Pesquisa..."
           />
-        </b-col>        
+        </b-col>
         <b-col>
           <b-button variant="outline-primary" @click="start(pesquisa, selected)">Go Robot</b-button>
         </b-col>
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { robotText } from './../robots/text'
+
 export default {
   name: 'HelloWorld',
   props: {
@@ -45,8 +47,14 @@ export default {
   methods: {
     start (search, selected) {
       const content = {}
+      let robots = {
+        text: null
+      }
+
       content.search = search
       content.prefix = selected
+      
+      robots.text = robotText(content)
 
       console.log(content)
     }
