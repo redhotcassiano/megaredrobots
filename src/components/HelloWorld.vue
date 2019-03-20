@@ -4,13 +4,20 @@
     <b-container class="bv-example-row">
       <b-row>
         <b-col>
+          <b-form-select v-model="selected" :options="options"/>
+        </b-col>
+        <b-col>
           <b-form-input
-          id="input1"
-          type="text"
-          v-model="pesquisa"
-          required
-          placeholder="Termo de Pesquisa..." />
+            id="input1"
+            type="text"
+            v-model="pesquisa"
+            required
+            placeholder="Termo de Pesquisa..."
+          />
         </b-col>        
+        <b-col>
+          <b-button variant="outline-primary" @click="start(pesquisa, selected)">Go Robot</b-button>
+        </b-col>
       </b-row>
     </b-container>
   </div>
@@ -21,7 +28,29 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }  
+  },
+  data: function () {
+    return {
+      pesquisa: '',
+      selected: null,
+      options: [
+        { value: null, text: 'Selecione Uma Opção' },
+        { value: 'Who is', text: 'Who is ' },
+        { value: 'what is', text: 'what is ' },
+        { value: 'The History of', text: 'The History of ' }
+      ]
+    }
+  },
+  computed: {},
+  methods: {
+    start (search, selected) {
+      const content = {}
+      content.search = search
+      content.prefix = selected
+
+      console.log(content)
+    }
+  }
 }
 </script>
 
