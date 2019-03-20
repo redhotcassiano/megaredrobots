@@ -53,7 +53,7 @@ export default {
 
       content.search = search
       content.prefix = selected
-      
+
       robots.text = robotText(content)
 
       console.log(content)
