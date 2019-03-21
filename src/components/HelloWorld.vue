@@ -19,17 +19,26 @@
           <b-button variant="outline-primary" @click="start(pesquisa, selected)">Go Robot</b-button>
         </b-col>
       </b-row>
+      <b-row>
+        <b-col>
+          <info-text :msg="'Informações da Pesquisa'" :robot="robotInfoText" v-if="robotInfoText != null"></info-text>
+        </b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
 
 <script>
 import { robotText } from './../robots/text'
+import InfoText from './InfoRobotText'
 
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  components: {
+    InfoText
   },
   data: function () {
     return {
@@ -43,9 +52,13 @@ export default {
       ]
     }
   },
-  computed: {},
+  computed: {
+    robotInfoText () {
+      return this.$store.state.robots.text || null
+    }
+  },
   methods: {
-   async start (search, selected) {
+    async start (search, selected) {
       const content = {}
       let robots = {
         text: null
@@ -53,11 +66,16 @@ export default {
 
       content.search = search
       content.prefix = selected
+      let resultRobotText = await robotText(content)
+      robots.text = resultRobotText
 
-      robots.text = robotText(content)
+      this.updateStates(content, robots)
 
-      console.log(content)
-      console.log('Result Robots: ', await robots)
+    },
+
+    async updateStates (content, robots) {
+      this.$store.dispatch('addContant', content)
+      this.$store.dispatch('addRobots', robots)
     }
   }
 }
