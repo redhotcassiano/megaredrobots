@@ -1,5 +1,6 @@
 // const algorithmia = require('algorithmia')
 import config from './../config'
+import sbd from 'sbd'
 
 export async function robotText (content) {
   let result = {}
@@ -9,6 +10,8 @@ export async function robotText (content) {
   result.serializer = await serializerContent(result)
 
   result.serializer = await removeMakdown(result.serializer)
+
+  result.serializer = await sentenceIn(result.serializer)
 
   return result
 }
@@ -53,6 +56,21 @@ async function removeMakdown (content) {
   })
 
   return result.join(' ')
+}
+
+async function sentenceIn (content) {
+  let result = []
+  let sentences = sbd.sentences(content)
+  sentences.map((item) => {
+    result.push({
+      text: item,
+      keywords: [],
+      imagens: []
+    })
+  })
+  console.log(result)
+
+  return result
 }
 
 export default robotText

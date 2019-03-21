@@ -4,7 +4,7 @@
     <b-container class="bv-example-row">
       <b-row>
         <b-col>
-          {{robot}}
+
         </b-col>
       </b-row>
     </b-container>
@@ -16,8 +16,7 @@ import { robotText } from './../robots/text'
 export default {
   name: 'InfoText',
   props: {
-    msg: String,
-    robot: Object
+    msg: String
   },
   data: function () {
     return {

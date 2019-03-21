@@ -21,7 +21,7 @@
       </b-row>
       <b-row>
         <b-col>
-          <info-text class="info-text" :msg="'Informações da Pesquisa'" :robot="robotInfoText" v-if="robotInfoText != null"></info-text>
+          <info-text class="info-text" :msg="'Pesquisa Sobre '+pesquisa" v-if="robotInfoText != null"></info-text>
         </b-col>
       </b-row>
     </b-container>
@@ -73,7 +73,6 @@ export default {
       content.serializer = resultRobotText.serializer
 
       this.updateStates(content, robots)
-
     },
 
     async updateStates (content, robots) {
