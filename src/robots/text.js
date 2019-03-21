@@ -52,7 +52,7 @@ async function removeMakdown (content) {
     }
   })
 
-  return result
+  return result.join(' ')
 }
 
 export default robotText

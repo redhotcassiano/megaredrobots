@@ -67,9 +67,9 @@ export default {
       content.search = search
       content.prefix = selected
       let resultRobotText = await robotText(content)
-      robots.text = resultRobotText
+      robots.text = resultRobotText.serializer
 
-      content.original = resultRobotText.result.content
+      content.original = resultRobotText
       content.serializer = resultRobotText.serializer
 
       this.updateStates(content, robots)
