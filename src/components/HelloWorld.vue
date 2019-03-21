@@ -45,7 +45,7 @@ export default {
   },
   computed: {},
   methods: {
-    start (search, selected) {
+   async start (search, selected) {
       const content = {}
       let robots = {
         text: null
@@ -57,6 +57,7 @@ export default {
       robots.text = robotText(content)
 
       console.log(content)
+      console.log('Result Robots: ', await robots)
     }
   }
 }
