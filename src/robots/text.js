@@ -68,7 +68,6 @@ async function sentenceIn (content) {
       imagens: []
     })
   })
-  console.log(result)
 
   return result
 }
