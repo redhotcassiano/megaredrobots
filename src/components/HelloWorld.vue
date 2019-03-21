@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1 class="title">{{ msg }}</h1>
     <b-container class="bv-example-row">
       <b-row>
         <b-col>
@@ -21,7 +21,7 @@
       </b-row>
       <b-row>
         <b-col>
-          <info-text :msg="'Informações da Pesquisa'" :robot="robotInfoText" v-if="robotInfoText != null"></info-text>
+          <info-text class="info-text" :msg="'Informações da Pesquisa'" :robot="robotInfoText" v-if="robotInfoText != null"></info-text>
         </b-col>
       </b-row>
     </b-container>
@@ -69,6 +69,9 @@ export default {
       let resultRobotText = await robotText(content)
       robots.text = resultRobotText
 
+      content.original = resultRobotText.result.content
+      content.serializer = resultRobotText.serializer
+
       this.updateStates(content, robots)
 
     },
@@ -96,5 +99,12 @@ li {
 }
 a {
   color: #42b983;
+}
+.title {
+  margin-bottom: 25px;
+}
+
+.info-text {
+  margin-top: 25px;
 }
 </style>
