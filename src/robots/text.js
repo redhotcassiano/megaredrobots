@@ -24,7 +24,7 @@ async function fetchContentFromWikipedia (text) {
 
   // eslint-disable-next-line no-undef
   const al = Algorithmia.client(config.keyAlgorithmia)
-  const wikiReq = al.algo('web/WikipediaParser/0.1.2?timeout=300') // timeout is optional
+  const wikiReq = al.algo('web/WikipediaParser/0.1.2') // timeout is optional
   return wikiReq.pipe(input)
 }
 
